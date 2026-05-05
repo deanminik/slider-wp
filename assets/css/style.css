@@ -1,0 +1,253 @@
+/* 
+ * CCC Home Slider Styles
+ * Optimized and responsive
+ */
+
+.ccc-home-slider {
+    position: relative;
+    width: 100%;
+}
+
+.ccc-home-slider .splide__slide {
+    position: relative;
+    min-height: 80vh; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+}
+
+.ccc-slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.ccc-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Subtle overlay to ensure text readability if image is too bright */
+.ccc-slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 80%);
+}
+
+.ccc-slide-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+}
+
+.ccc-slide-content {
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 1;
+}
+
+h1.ccc-slide-title,
+h2.ccc-slide-title {
+    color: #FFF;
+    font-family: 'Eina02-Bold', sans-serif; /* Fallback sans-serif */
+    font-size: clamp(40px, 5vw, 64px); /* Responsive typography */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.ccc-slide-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+a.ccc-btn-primary {
+    display: inline-flex;
+    padding: 20px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #000;
+    background-color: #FFF;
+    text-align: center;
+    font-family: 'Eina02-Bold', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+a.ccc-btn-primary:hover {
+    background-color: #f2f2f2;
+}
+
+.ccc-btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+span.ccc-secondary-text {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Eina02-Bold', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+a.ccc-secondary-link {
+    color: #FFF;
+    font-family: 'Eina02-Bold', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    transition: opacity 0.3s ease;
+}
+
+a.ccc-secondary-link:hover {
+    opacity: 0.8;
+}
+
+/* 
+ * Splide Custom Overrides 
+ */
+
+.ccc-slider-arrows-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center; /* Centers vertically just like the slides */
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ccc-slider-arrows-overlay .ccc-slide-content-wrapper,
+.ccc-slider-arrows-overlay .ccc-slide-content {
+    height: 100%;
+    position: relative;
+    /* ccc-slide-content is aligned to the right (flex-end) by the wrapper, 
+       and takes max 700px. So its left edge aligns perfectly with the title! */
+}
+
+.ccc-home-slider .splide__arrows {
+    position: absolute;
+    top: 50%;
+    left: 0; /* Align to the left edge of the 700px content box */
+    transform: translateY(-50%);
+    margin-top: -140px; /* Offset to place it right above the title */
+    display: flex;
+    gap: 15px;
+    pointer-events: none;
+}
+
+/* Media query to adjust arrows margin based on font size clamping if necessary */
+@media (max-width: 768px) {
+    .ccc-home-slider .splide__arrows {
+        margin-top: -110px;
+        left: 20px; /* slight indent on small screens if needed, but left: 0 matches title */
+    }
+}
+
+.ccc-home-slider button.splide__arrow {
+    pointer-events: auto;
+    position: static;
+    transform: none;
+    background: transparent;
+    color: #FFF;
+    text-align: center;
+    font-family: "Font Awesome 7 Free", "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    width: auto;
+    height: auto;
+    opacity: 1;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.ccc-home-slider button.splide__arrow:hover {
+    opacity: 0.8;
+}
+
+.ccc-home-slider button.splide__arrow svg {
+    display: none; /* Hide default Splide SVG */
+}
+
+.ccc-home-slider button.splide__arrow--prev::before {
+    content: "\f104"; /* FontAwesome left chevron */
+}
+
+.ccc-home-slider button.splide__arrow--next::before {
+    content: "\f105"; /* FontAwesome right chevron */
+}
+
+.ccc-home-slider .splide__pagination {
+    bottom: 30px;
+    z-index: 2;
+}
+
+.ccc-home-slider button.splide__pagination__page {
+    width: 12px;
+    height: 12px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    opacity: 1;
+    margin: 0 6px;
+    padding: 0;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.ccc-home-slider button.splide__pagination__page.is-active {
+    background-color: #82C7B7;
+    transform: scale(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .ccc-slide-content-wrapper {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .ccc-slide-content {
+        align-items: center;
+    }
+    
+    .ccc-home-slider .splide__arrows {
+        justify-content: center;
+        margin-top: -140px;
+    }
+}
